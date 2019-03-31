@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<h3> Metrics to update </h3>
+	<table class="table">
+		<tr>
+			<th>Counter</th>
+			<th>Insert</th>
+		</tr>
+		{% for x in metrics_list %}
+			<tr>
+				<td>{{x.name}}</td>
+				<td>
+					<a class="btn btn-default"href="{% url 'counter:add_counter' x.pk %}">
+					Add <i class="fas fa-plus-circle "></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<p>
+		<a  class="btn btn-success" href="{% url 'counter:add_metrics' %}">
+		create metrics <i class="fas fa-plus-circle "></i>
+		</a>
+	</p>
+
+	<br>
+
+	<h3>All Metrics you participated</h3>
+
+	<table class="table">
+		<tr>
+			<th>Metrics</th>
+			<th>Display</th>
+		</tr>
+		{% for x in all_metrices %}
+			<tr>
+				<td>{{x.name}}</td>
+				<td>
+					<a target="_blank" class="btn btn-default" href="{% url 'counter:view_counter' x.pk %}">
+						View <i class="fas fa-eye "></i>
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<br>
+	<br>
+{% endblock content %}
